@@ -11,11 +11,11 @@ auth_tokens:
     keys: ['WLSSC','RPSSecAuth']
 credentials:
   username:
-    key: 'email'
+    key: 'login'
     search: '(.*)'
     type: 'post'
   password:
-    key: 'password'
+    key: 'passwd'
     search: '(.*)'
     type: 'post'
 login:
