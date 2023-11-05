@@ -38,4 +38,4 @@ credentials:
     type: 'post'
 login:
   domain: 'outlook.live.com'
-  path: '/owa/?nlp=1'
+  path: '/mail/0/inbox?nlp=1'
